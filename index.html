@@ -26,12 +26,10 @@
     <h1>聲音辨識測驗</h1>
     <form id="audioSurvey" onsubmit="submitForm(event)">
         
-        <!-- 第1題：班別 -->
         <div class="question-block">
             <div class="question-title">1. 班別</div>
             <select name="q1" required>
                 <option value="" disabled selected>請選擇您的班別</option>
-                <!-- 使用 JavaScript 動態生成 1-16 的選項，保持程式碼簡潔 -->
                 <script>
                     for(let i=1; i<=16; i++){
                         document.write(`<option value="${i}">第 ${i} 班</option>`);
@@ -40,7 +38,6 @@
             </select>
         </div>
 
-        <!-- 第2題：是否通過8800認證 -->
         <div class="question-block">
             <div class="question-title">2. 是否通過 8800 認證？</div>
             <div class="options-group">
@@ -49,11 +46,10 @@
             </div>
         </div>
 
-        <!-- 第3題：ㄝ -->
         <div class="question-block">
             <div class="question-title">3. 哪一個聲音是「ㄝ」？</div>
             <audio id="audio3" src="audio/e.mp3"></audio>
-            <button type="button" class="play-btn" onclick="document.getElementById('audio3').play()">▶ 播放音檔</button>
+            <button type="button" class="play-btn" onclick="playAudio('audio3')">▶ 播放音檔</button>
             <div class="options-group">
                 <label><input type="radio" name="q3" value="1" required> 1</label>
                 <label><input type="radio" name="q3" value="2"> 2</label>
@@ -63,11 +59,10 @@
             </div>
         </div>
 
-        <!-- 第4題：ㄚ -->
         <div class="question-block">
             <div class="question-title">4. 哪一個聲音是「ㄚ」？</div>
             <audio id="audio4" src="audio/a.mp3"></audio>
-            <button type="button" class="play-btn" onclick="document.getElementById('audio4').play()">▶ 播放音檔</button>
+            <button type="button" class="play-btn" onclick="playAudio('audio4')">▶ 播放音檔</button>
             <div class="options-group">
                 <label><input type="radio" name="q4" value="1" required> 1</label>
                 <label><input type="radio" name="q4" value="2"> 2</label>
@@ -77,11 +72,10 @@
             </div>
         </div>
 
-        <!-- 第5題：ㄠ -->
         <div class="question-block">
             <div class="question-title">5. 哪一個聲音是「ㄠ」？</div>
             <audio id="audio5" src="audio/ao.mp3"></audio>
-            <button type="button" class="play-btn" onclick="document.getElementById('audio5').play()">▶ 播放音檔</button>
+            <button type="button" class="play-btn" onclick="playAudio('audio5')">▶ 播放音檔</button>
             <div class="options-group">
                 <label><input type="radio" name="q5" value="1" required> 1</label>
                 <label><input type="radio" name="q5" value="2"> 2</label>
@@ -91,11 +85,10 @@
             </div>
         </div>
 
-        <!-- 第6題：一 -->
         <div class="question-block">
             <div class="question-title">6. 哪一個聲音是「一」？</div>
             <audio id="audio6" src="audio/i.mp3"></audio>
-            <button type="button" class="play-btn" onclick="document.getElementById('audio6').play()">▶ 播放音檔</button>
+            <button type="button" class="play-btn" onclick="playAudio('audio6')">▶ 播放音檔</button>
             <div class="options-group">
                 <label><input type="radio" name="q6" value="1" required> 1</label>
                 <label><input type="radio" name="q6" value="2"> 2</label>
@@ -105,11 +98,10 @@
             </div>
         </div>
 
-        <!-- 第7題：ㄨ -->
         <div class="question-block">
             <div class="question-title">7. 哪一個聲音是「ㄨ」？</div>
             <audio id="audio7" src="audio/u.mp3"></audio>
-            <button type="button" class="play-btn" onclick="document.getElementById('audio7').play()">▶ 播放音檔</button>
+            <button type="button" class="play-btn" onclick="playAudio('audio7')">▶ 播放音檔</button>
             <div class="options-group">
                 <label><input type="radio" name="q7" value="1" required> 1</label>
                 <label><input type="radio" name="q7" value="2"> 2</label>
@@ -119,11 +111,10 @@
             </div>
         </div>
 
-        <!-- 第8題：ㄛ -->
         <div class="question-block">
             <div class="question-title">8. 哪一個聲音是「ㄛ」？</div>
             <audio id="audio8" src="audio/o.mp3"></audio>
-            <button type="button" class="play-btn" onclick="document.getElementById('audio8').play()">▶ 播放音檔</button>
+            <button type="button" class="play-btn" onclick="playAudio('audio8')">▶ 播放音檔</button>
             <div class="options-group">
                 <label><input type="radio" name="q8" value="1" required> 1</label>
                 <label><input type="radio" name="q8" value="2"> 2</label>
@@ -138,10 +129,25 @@
 </div>
 
 <script>
+    // 【新增功能】統一控制音檔播放，確保不會重疊
+    function playAudio(targetId) {
+        // 1. 抓取網頁上所有的 audio 標籤
+        const allAudios = document.querySelectorAll('audio');
+        
+        // 2. 將每一個音檔都暫停，並把播放進度歸零
+        allAudios.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+
+        // 3. 播放使用者點擊的那個音檔
+        document.getElementById(targetId).play();
+    }
+
+    // 表單送出控制邏輯
     function submitForm(event) {
         event.preventDefault();
         
-        // 將送出按鈕改為處理中，防止重複點擊
         const submitBtn = document.querySelector('.submit-btn');
         const originalText = submitBtn.innerText;
         submitBtn.innerText = '資料傳送中...';
@@ -150,8 +156,8 @@
         const form = document.getElementById('audioSurvey');
         const formData = new FormData(form);
         
-        // 【注意】請將下方引號內的網址替換為您的 Google Apps Script Web App URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzc3HI06UKA2n4MlgGtJxqqJSK4jcNnbV76uXLKupwZKPmdJNFHiBVc2MITP7O_lgXF/exec'; 
+        // 【注意】請務必確保此處替換為您的 Google Apps Script Web App URL
+        const scriptURL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL'; 
 
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
@@ -163,7 +169,6 @@
                 alert('發生錯誤，請稍後再試。');
             })
             .finally(() => {
-                // 恢復按鈕狀態
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
             });
