@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聲音辨識測驗 V1.2</title>
+    <title>聲音辨識測驗 V1.3</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 700px; margin: 20px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
         .survey-container { background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .intro-block { line-height: 1.6; margin-bottom: 25px; color: #555; font-size: 0.98em; border-bottom: 1px dashed #e0e0e0; padding-bottom: 20px; }
+        .intro-block p { margin: 8px 0; }
         .question-block { border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 25px; border-radius: 8px; background-color: #fafafa; }
         .question-title { font-weight: bold; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50; }
         .play-btn { background-color: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-bottom: 15px; display: inline-flex; align-items: center; }
@@ -23,7 +25,18 @@
 <body>
 
 <div class="survey-container">
-    <h1>聲音辨識測驗 V1.2</h1>
+    <h1>聲音辨識測驗 V1.3</h1>
+    
+    <div class="intro-block">
+        <p>1. 測驗共6題，每題將連續撥放五個相似聲音，請選一個「最接近」的選項。</p>
+        <p>2. 所需時間約1分鐘，任何人皆可填答不限師資身分，歡迎邀請親朋好友一起玩玩聲音小遊戲。</p>
+        <p>3. 測驗無須填寫任何足以辨識身分的個資，後臺數據僅作PA教學媒材之參考，敬請安心填答。</p>
+        <p style="margin-top: 15px;">如有任何疑問或建議，歡迎不吝來信：<br>
+           <a href="mailto:nycusor.ls13@nycu.edu.tw" style="color: #3498db; text-decoration: none;">nycusor.ls13@nycu.edu.tw</a>
+        </p>
+        <p style="text-align: right; font-weight: bold; margin-top: 15px; color: #2c3e50;">師資8班 晧博敬上</p>
+    </div>
+
     <form id="audioSurvey" onsubmit="submitForm(event)">
         
         <div class="question-block">
@@ -48,7 +61,7 @@
         </div>
 
         <div class="question-block">
-            <div class="question-title">3. 哪一個聲音最像「ㄝ」？</div>
+            <div class="question-title">3. 哪一個聲音是「ㄝ」？</div>
             <audio id="audio3" src="audio/e.mp3"></audio>
             <button type="button" class="play-btn" onclick="playAudio('audio3')">▶ 播放音檔</button>
             <div class="options-group">
@@ -61,7 +74,7 @@
         </div>
 
         <div class="question-block">
-            <div class="question-title">4. 哪一個聲音最像「ㄚ」？</div>
+            <div class="question-title">4. 哪一個聲音是「ㄚ」？</div>
             <audio id="audio4" src="audio/a.mp3"></audio>
             <button type="button" class="play-btn" onclick="playAudio('audio4')">▶ 播放音檔</button>
             <div class="options-group">
@@ -74,7 +87,7 @@
         </div>
 
         <div class="question-block">
-            <div class="question-title">5. 哪一個聲音最像「ㄠ」？</div>
+            <div class="question-title">5. 哪一個聲音是「ㄠ」？</div>
             <audio id="audio5" src="audio/ao.mp3"></audio>
             <button type="button" class="play-btn" onclick="playAudio('audio5')">▶ 播放音檔</button>
             <div class="options-group">
@@ -87,7 +100,7 @@
         </div>
 
         <div class="question-block">
-            <div class="question-title">6. 哪一個聲音最像「一」？</div>
+            <div class="question-title">6. 哪一個聲音是「一」？</div>
             <audio id="audio6" src="audio/i.mp3"></audio>
             <button type="button" class="play-btn" onclick="playAudio('audio6')">▶ 播放音檔</button>
             <div class="options-group">
@@ -100,7 +113,7 @@
         </div>
 
         <div class="question-block">
-            <div class="question-title">7. 哪一個聲音是最像「ㄨ」？</div>
+            <div class="question-title">7. 哪一個聲音是「ㄨ」？</div>
             <audio id="audio7" src="audio/u.mp3"></audio>
             <button type="button" class="play-btn" onclick="playAudio('audio7')">▶ 播放音檔</button>
             <div class="options-group">
@@ -113,7 +126,7 @@
         </div>
 
         <div class="question-block">
-            <div class="question-title">8. 哪一個聲音最像「ㄛ」？</div>
+            <div class="question-title">8. 哪一個聲音是「ㄛ」？</div>
             <audio id="audio8" src="audio/o.mp3"></audio>
             <button type="button" class="play-btn" onclick="playAudio('audio8')">▶ 播放音檔</button>
             <div class="options-group">
@@ -152,7 +165,6 @@
         const form = document.getElementById('audioSurvey');
         const formData = new FormData(form);
         
-        // 已更新為您提供的最新 Web App URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxIwFjt0CKo7_yR-unveECPv35uYy98td-jOt8dXnLaIaMajkz0Fl5GKuOwKjwl2-Hl/exec'; 
 
         fetch(scriptURL, { method: 'POST', body: formData })
