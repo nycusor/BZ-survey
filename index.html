@@ -153,7 +153,7 @@
         const formData = new FormData(form);
         
         // 【注意】請確保此處保留您的 Google Apps Script Web App URL
-        const scriptURL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL'; 
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzxt0jEJdkt5B0a4KHxRJOSn6RK6IOVA0bcz14we5k/dev'; 
 
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
