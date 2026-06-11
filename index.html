@@ -30,9 +30,10 @@
             <div class="question-title">1. 班別</div>
             <select name="q1" required>
                 <option value="" disabled selected>請選擇您的班別</option>
+                <option value="尚未報名師資班">尚未報名師資班</option>
                 <script>
                     for(let i=1; i<=16; i++){
-                        document.write(`<option value="${i}">第 ${i} 班</option>`);
+                        document.write(`<option value="${i}">第 ${i} 期</option>`);
                     }
                 </script>
             </select>
@@ -129,18 +130,13 @@
 </div>
 
 <script>
-    // 【新增功能】統一控制音檔播放，確保不會重疊
+    // 統一控制音檔播放，確保不會重疊
     function playAudio(targetId) {
-        // 1. 抓取網頁上所有的 audio 標籤
         const allAudios = document.querySelectorAll('audio');
-        
-        // 2. 將每一個音檔都暫停，並把播放進度歸零
         allAudios.forEach(audio => {
             audio.pause();
             audio.currentTime = 0;
         });
-
-        // 3. 播放使用者點擊的那個音檔
         document.getElementById(targetId).play();
     }
 
@@ -156,7 +152,7 @@
         const form = document.getElementById('audioSurvey');
         const formData = new FormData(form);
         
-        // 【注意】請務必確保此處替換為您的 Google Apps Script Web App URL
+        // 【注意】請確保此處保留您的 Google Apps Script Web App URL
         const scriptURL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL'; 
 
         fetch(scriptURL, { method: 'POST', body: formData })
