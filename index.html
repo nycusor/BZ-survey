@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聲音辨識測驗 V1.3</title>
+    <title>聲音辨識測驗 V1.4</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 700px; margin: 20px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
         .survey-container { background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
@@ -20,21 +20,22 @@
         .submit-btn:hover { background-color: #219653; }
         select, input[type="radio"] { margin-right: 10px; cursor: pointer; }
         select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; font-size: 1em; }
+        .other-input { width: 90%; padding: 8px; margin-top: 8px; margin-left: 25px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95em; display: block; }
     </style>
 </head>
 <body>
 
 <div class="survey-container">
-    <h1>聲音辨識測驗 V1.3</h1>
+    <h1>聲音辨識測驗 V1.4</h1>
     
     <div class="intro-block">
-        <p>1. 測驗共6題，每題將連續撥放五個相似聲音，請選一個「最接近」的選項。</p>
-        <p>2. 所需時間約1分鐘，任何人皆可填答不限師資身分，歡迎邀請親朋好友一起玩玩聲音小遊戲。</p>
-        <p>3. 測驗無須填寫任何足以辨識身分的個資，後臺數據僅作PA教學媒材之參考，敬請安心填答。</p>
+        <p>1. 測驗共6題，每題將連續撥放五個相似聲音，請選一個「最接近或相對接近」的選項。</p>
+        <p>2. 所需時間約1分鐘，任何人皆可填答，不限師資身分或是否通過8800認證，歡迎邀請親朋好友一起玩玩聲音小遊戲。</p>
+        <p>3. 您無須填寫任何足以辨識身分的個資，選答結果僅作為教學媒材之初步參考，敬請安心填答。</p>
         <p style="margin-top: 15px;">如有任何疑問或建議，歡迎不吝來信：<br>
            <a href="mailto:nycusor.ls13@nycu.edu.tw" style="color: #3498db; text-decoration: none;">nycusor.ls13@nycu.edu.tw</a>
         </p>
-        <p style="text-align: right; margin-top: 15px; color: #2c3e50;">師資8班 晧博敬上</p>
+        <p style="text-align: right; font-weight: bold; margin-top: 15px; color: #2c3e50;">師資8班 晧博敬上</p>
     </div>
 
     <form id="audioSurvey" onsubmit="submitForm(event)">
@@ -135,6 +136,20 @@
                 <label><input type="radio" name="q8" value="3"> 3</label>
                 <label><input type="radio" name="q8" value="4"> 4</label>
                 <label><input type="radio" name="q8" value="5"> 5</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">9. 請選出您的填答感受</div>
+            <div class="options-group">
+                <label><input type="radio" name="q9" value="A--不像" required> A. 很難選，因為每個聲音都「不像」指定聲音</label>
+                <label><input type="radio" name="q9" value="B--容易"> B. 很容易選出指定聲音</label>
+                <label><input type="radio" name="q9" value="C--稍難"> C. 稍有困難，但還選得出來</label>
+                <label><input type="radio" name="q9" value="D--太像"> D. 很難選，因為每個聲音都「太像」指定聲音</label>
+                <label>
+                    <input type="radio" name="q9" value="E. 其他" id="radioE"> E. 其他：
+                    <input type="text" name="q9_other" class="other-input" placeholder="請說明（如哪題最難、哪題最簡單）" onclick="document.getElementById('radioE').checked = true;">
+                </label>
             </div>
         </div>
 
